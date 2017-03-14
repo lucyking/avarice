@@ -265,6 +265,12 @@ class MACD:
 
   def indicator():
     # We can start MACD EMAs once we have max period candles
+
+    print('MACD_Short_list', Helpers.EMA(
+      ldb.price_list, storage.getlist('MACD_Short_list'), gc.MACD.ShortPeriod))
+    print('MACD_Long_list', Helpers.EMA(
+      ldb.price_list, storage.getlist('MACD_Long_list'), gc.MACD.LongPeriod))
+
     if len(ldb.price_list) >= max(gc.MACD.LongPeriod, gc.MACD.ShortPeriod):
       storage.writelist('MACD_Short_list', Helpers.EMA(
           ldb.price_list, storage.getlist('MACD_Short_list'), gc.MACD.ShortPeriod))
@@ -272,6 +278,9 @@ class MACD:
           ldb.price_list, storage.getlist('MACD_Long_list'), gc.MACD.LongPeriod))
       storage.writelist('MACD_ind_list', storage.getlist(
           'MACD_Short_list')[-1] - storage.getlist('MACD_Long_list')[-1])
+      print('MACD_ind_list', storage.getlist(
+          'MACD_Short_list')[-1] - storage.getlist('MACD_Long_list')[-1])
+
 
       # We need SignalPeriod MACDs before generating MACDSignal
       if len(storage.getlist('MACD_Long_list')) >= gc.MACD.SignalPeriod:

@@ -6,7 +6,7 @@ import genconfig
 
 
 class API:
-  Verbose = False
+  Verbose = True#False
   Exchange = 'okcoin'
   TradePair = 'btc_cny'
   Asset = TradePair[:3]
@@ -18,14 +18,15 @@ class API:
 
 class Candles:
   Verbose = True
-  Size = 15
+  #Size = 15
+  Size = 1
 
 
 class Trader:
   Enabled = False
   Verbose = True
   # All of the following is also used by Simulator
-  TradeIndicators = ['EMA']
+  TradeIndicators = ['EMA','MACD']
   VerboseIndicators = []
   AdvancedStrategy = 'Default'
   TradeVolume = 99
@@ -76,7 +77,8 @@ class Notifier:
 
 
 class Database:
-  StoreAll = False
+  # StoreAll = False
+  StoreAll = True
   Debug = False
   Path = "./database"
 
